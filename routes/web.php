@@ -20,4 +20,5 @@ Route::post('/register', 'RegisterController@store');
 
 Route::get('/login', 'LoginController@create');
 Route::post('/login', 'LoginController@store');
+Route::get('/registered', 'RegisterController@registered');
 Route::get('/logout', 'LoginController@destroy');   

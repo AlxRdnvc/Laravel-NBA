@@ -8,6 +8,11 @@ use App\User;
 
 class RegisterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     public function create()
     {
         return view('auth.register');
@@ -27,8 +32,11 @@ class RegisterController extends Controller
             'password' => bcrypt(request('password')),
         ]);
 
-        // auth()->login($user); 
+        return redirect('/registered');
+    }
 
-        return redirect('/');
+    public function registered()
+    {
+        return view('auth.registered');
     }
 }
