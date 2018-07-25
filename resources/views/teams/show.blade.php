@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>NBA</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
-<body>
+@extends('layout.master')
+
+@section('content')
     <div><hr>
         <p>Team:</p><hr>
         <p>{{ $team->name }}</p>
@@ -22,7 +14,4 @@
         <a href="/players/{{$player->id}}"><p>{{ $player->first_name }} {{ $player->last_name}}</p></a>
         @endforeach
     </div>
-
-
-</body>
-</html>
+@endsection
