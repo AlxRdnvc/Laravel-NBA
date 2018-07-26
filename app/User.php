@@ -18,6 +18,11 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    public function Comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
