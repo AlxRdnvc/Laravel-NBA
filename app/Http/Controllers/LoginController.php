@@ -25,14 +25,26 @@ class LoginController extends Controller
         ]);
 
         $credentials = request()->only(['email', 'password']);
+
         if(!auth()->attempt($credentials))
         {
             return redirect()->back()->withErrors([
                 'message' => "Bad credentials. Please try again!"
             ]);
-        } 
+        } else {
 
-        return redirect('/');
+            if(auth()->user()->is_verified) {
+
+                return redirect('/teams');
+
+            } else {
+
+                $this->destroy();
+
+                return back()->withErrors(['message' => 'You are not verified, please check your email for verification!']);
+
+            }
+        }
     }
 
     public function destroy()

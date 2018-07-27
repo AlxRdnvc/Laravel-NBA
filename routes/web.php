@@ -11,7 +11,11 @@
 |
 */
 
-Route::get('/', 'TeamsController@index');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/teams', 'TeamsController@index');
 Route::get('/teams/{id}', 'TeamsController@show');
 Route::get('/players/{id}', 'PlayersController@show');
 
@@ -25,5 +29,6 @@ Route::get('/logout', 'LoginController@destroy');
 
 
 Route::post('/teams/{id}', 'CommentsController@store');
+Route::get('/verifyEmail/{user}/{token}', 'RegisterController@verify');
 
   

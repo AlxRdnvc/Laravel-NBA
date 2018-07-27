@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Mail\UserVerified;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 use App\User;
 
@@ -18,7 +19,7 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function store(Request $request)
+    public function store()
     {
         $this->validate(request(), [
             'name' => 'required',
@@ -30,13 +31,24 @@ class RegisterController extends Controller
             'name' => request('name'),
             'email' => request('email'),
             'password' => bcrypt(request('password')),
+            'email_token' => str_random(30)
         ]);
 
-        return redirect('/registered');
+        Mail::to($user->email)->send(new UserVerified($user));
+
+        return redirect('/login')->withErrors(['message' => 'You are successufully registered! Please check your email for verification...']);
     }
 
-    public function registered()
+    public function verify(User $user, $email_token)
     {
-        return view('auth.registered');
-    }
+        
+            $user->update([
+                'is_verified' => 1,
+                'email_token' => $email_token
+            ]);
+
+            auth()->login($user);
+
+            return redirect('/login');
+     }
 }
