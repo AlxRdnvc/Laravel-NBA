@@ -31,4 +31,9 @@ Route::get('/logout', 'LoginController@destroy');
 Route::post('/teams/{id}', 'CommentsController@store');
 Route::get('/verifyEmail/{user}/{token}', 'RegisterController@verify');
 
+Route::get('/news', 'NewsController@index');
+Route::get('/news/{id}', 'NewsController@show');
+
+
+
   

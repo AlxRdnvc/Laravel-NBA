@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\News;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,6 +22,11 @@ class User extends Authenticatable
     public function Comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function News()
+    {
+        return $this->hasMany(News::class);
     }
 
     /**
