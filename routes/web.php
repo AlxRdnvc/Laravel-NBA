@@ -34,6 +34,8 @@ Route::get('/verifyEmail/{user}/{token}', 'RegisterController@verify');
 Route::get('/news', 'NewsController@index');
 Route::get('/news/{id}', 'NewsController@show');
 Route::get('/news/team/{team}', 'NewsController@showTeamNews');
+Route::get('/news/create', 'NewsController@create');
+Route::post('/news', 'NewsController@store');
 
 
 

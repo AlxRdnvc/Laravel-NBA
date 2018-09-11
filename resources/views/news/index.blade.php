@@ -2,6 +2,11 @@
 
 @section('content')
 
+    @if(Session::has('message'))
+    <p class="alert alert-info">{{ Session::get('message') }}</p>
+    @endif
+     <a class="btn btn-primary" href="/news/create">Create news</a>
+
     <b><p>Latest News:</p></b><hr>
     <ul>
         @foreach($news as $singleNews)

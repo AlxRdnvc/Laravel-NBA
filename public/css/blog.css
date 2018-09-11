@@ -18,8 +18,7 @@
   h2, .h2,
   h3, .h3,
   h4, .h4,
-  h5, .h5,
-  h6, .h6 {
+  h5, .h5, {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     color: #555;
@@ -165,4 +164,3 @@
   .blog-footer p:last-child {
     margin-bottom: 0;
   }
-  

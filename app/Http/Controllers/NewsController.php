@@ -28,7 +28,14 @@ class NewsController extends Controller
 
     public function create()
     {
-        
+        $teams = Team::all();
+        return view('news.create', compact('teams'));
+    }
+
+    public function show($id)
+    {
+        $news = News::find($id);
+        return view('news.show', compact('news'));
     }
 
     /**
@@ -37,9 +44,24 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $this->validate(request(), [
+        'title' => 'required',
+        'content' => 'required',
+        'teams' => 'required|array'
+        ]);
+
+        $news = News::create([
+        'title' => request('title'),
+        'content' => request('content'),
+        'user_id' => auth()->user()->id
+        ]);
+
+        $news->teams()->attach(request('teams'));
+        session()->flash('success', 'Thank you for publishing article on www.nba.com.'); 
+        return redirect('/news');
+        
     }
 
     /**
@@ -48,11 +70,6 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $news = News::with('user')->find($id);
-        return view('news.show', compact('news'));
-    }
 
     public function showTeamNews($name)
     {

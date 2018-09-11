@@ -7,11 +7,9 @@
     <p>{{ $news->content }}</p>
 
     @if(count($news->teams))
-        <ul class='list-unstyled'>
+        <ul>
             @foreach($news->teams as $team)
-                <li  class='btn'>
-                    <a href="/news/team/{{ $team->name }}">{{ $team->name }}</a>
-                </li>
+            <li><a href="/teams/{{$team->id}}">{{ $team->name }}</a></li>
             @endforeach
         </ul>
     @endif
