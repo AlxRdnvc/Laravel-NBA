@@ -1,20 +1,28 @@
 @extends('layout.master')
 
 @section('content')
-    <div><hr>
+    <div>
         <b><p>Team:</p></b><hr>
         <p>{{ $team->name }}</p>
         <p>{{ $team->email }}</p>
         <p>{{ $team->address }}</p>
         <p>{{ $team->city }}</p>
-    </div><hr>
+    </div><br><br>
+
     <div>
         <b><p>Players:</p></b><hr>
         @foreach($team->players as $player )
         <a href="/players/{{$player->id}}"><p>{{ $player->first_name }} {{ $player->last_name}}</p></a>
         @endforeach
-    </div>
+    </div><br><br>
+
+    <div>
+        <b><p>Latest News:</p></b><hr>
+        <a href="/news/team/{{ $team->name }}">News</a>
+    </div><br><br>
+
     <div class="form-group">
+    <b><p>Comments:</p></b><hr>
         <form method="POST" action="/teams/{{ $team->id }}">
             {{ csrf_field() }}
 

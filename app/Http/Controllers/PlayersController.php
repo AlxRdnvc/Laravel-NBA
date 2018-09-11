@@ -52,7 +52,7 @@ class PlayersController extends Controller
      */
     public function show($id)
     {
-        $player = Player::with('team')->find($id);
+        $player = Player::findOrFail($id);
         return view('players.show', compact('player'));
     }
 

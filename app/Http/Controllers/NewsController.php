@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\News;
 use App\User;
+use App\Team;
 
 class NewsController extends Controller
 {
@@ -24,6 +25,7 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         
@@ -52,6 +54,16 @@ class NewsController extends Controller
         return view('news.show', compact('news'));
     }
 
+    public function showTeamNews($name)
+    {
+        // $news = Team::with('news')->find($team)->news()->latest()->paginate(5);
+        // return view('news.team-news', compact('news'));
+
+        $team = Team::where('name', $name)->first();
+        $news = $team->news()->latest()->paginate(5);
+     
+        return view('news.team-news', compact('news'));
+    }
     /**
      * Show the form for editing the specified resource.
      *

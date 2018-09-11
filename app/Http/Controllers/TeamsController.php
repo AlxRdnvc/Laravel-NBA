@@ -53,7 +53,7 @@ class TeamsController extends Controller
      */
     public function show($id)
     {
-        $team = Team::with('players')->find($id);
+        $team = Team::findOrFail($id);
         return view('teams.show', compact('team'));
     }
 

@@ -8,8 +8,8 @@
             <a class="text-white" href="" style="padding-right: 20px;">{{ auth()->user()->name }}</a>  
             <a class="text-white" href="/logout">Logout</a>
             @else
-            <a class="text-white" href="/login">Login</a>
-            <a class="text-white" href="/register">Register</a>
+            <a class="text-white" href="/login" style="padding-right: 20px;">Login</a>
+            <a class="text-white" href="/register" style="padding-right: 20px;">Register</a>
             @endif
         </nav>
     </div>
